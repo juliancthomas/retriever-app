@@ -1,0 +1,1 @@
+# RRF (Reciprocal Rank Fusion) or cross-encoder re-ranking
