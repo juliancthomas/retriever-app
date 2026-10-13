@@ -1,3 +1,9 @@
 __pycache__/
 
 sample_cases/
+sample_claims/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/public
