@@ -1,0 +1,1 @@
+PYTHONPATH=. alembic -c app/alembic.ini revision --autogenerate -m "add story_context and extraction_quality to chunks"

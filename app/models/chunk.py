@@ -1,7 +1,9 @@
+# app/models/chunk.py
 from typing import TYPE_CHECKING, Any, Optional
 from pgvector.sqlalchemy import Vector
 from sqlalchemy import (
     Computed,
+    Float,
     ForeignKey,
     Index,
     Integer,
@@ -22,31 +24,32 @@ class Chunk(Base):
     document_id: Mapped[int] = mapped_column(
         ForeignKey("documents.id", ondelete="CASCADE"), nullable=False, index=True
     )
-    text: Mapped[str] = mapped_column(Text, nullable=False) # stores the raw textual content of an individual chunk extracted from the parent document
- 
+    text: Mapped[str] = mapped_column(Text, nullable=False)  # Stores raw text block / CSV row
+    story_context: Mapped[Optional[str]] = mapped_column(Text, nullable=True)  # LLM narrative summary
+    extraction_quality: Mapped[Optional[float]] = mapped_column(Float, nullable=True)  # Confidence score
+
     page: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
     metadata_: Mapped[dict[str, Any]] = mapped_column(
         "metadata", JSONB, default=dict, server_default="{}"
     )
 
-    # pgvector embedding
     embedding: Mapped[Optional[list[float]]] = mapped_column(
         Vector(384), nullable=True
     )
 
-    # PostgreSQL full-text search vector
+    # Full-text search now indexes story_context (falling back to text if summary is null)
     search_vector: Mapped[Optional[str]] = mapped_column(
         TSVECTOR,
-        Computed("to_tsvector('english', text)", persisted=True),
+        Computed(
+            "to_tsvector('english', coalesce(story_context, text))", 
+            persisted=True
+        ),
     )
 
-    # Relationship back to Document
     document: Mapped["Document"] = relationship(back_populates="chunks")
 
     __table_args__ = (
-        # GIN index for fast full-text keyword searches
         Index("ix_chunks_search_vector", "search_vector", postgresql_using="gin"),
-        # HNSW index for fast approximate nearest neighbor vector searches
         Index(
             "ix_chunks_embedding",
             "embedding",
@@ -54,6 +57,5 @@ class Chunk(Base):
             postgresql_with={"m": 16, "ef_construction": 64},
             postgresql_ops={"embedding": "vector_cosine_ops"},
         ),
-        # GIN index for JSONB metadata filtering
         Index("ix_chunks_metadata", metadata_, postgresql_using="gin")
     )

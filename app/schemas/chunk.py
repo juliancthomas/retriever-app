@@ -18,6 +18,8 @@ class ChunkCreate(ChunkBase):
     """Payload for inserting a new chunk into the database."""
 
     document_id: int
+    story_context: str | None = None
+    extraction_quality: float | None = None
 
 
 class ChunkUpdate(BaseModel):
@@ -39,6 +41,8 @@ class ChunkRead(ChunkBase):
     id: int
     document_id: int
     search_vector: str | None = None
+    story_context: str | None = None
+    extraction_quality: float | None = None
 
     model_config = ConfigDict(
         from_attributes=True,  # Enables ChunkRead.model_validate(orm_chunk)

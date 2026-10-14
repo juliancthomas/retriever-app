@@ -4,7 +4,6 @@ import logging
 import asyncio
 import uuid
 from typing import AsyncGenerator, Any
-import math
 
 from sentence_transformers import CrossEncoder
 from sqlalchemy import select
@@ -15,7 +14,6 @@ from app.models.chunk import Chunk
 from ollama import AsyncClient
 import sqlalchemy as sa
 from sqlalchemy.orm import joinedload
-
 
 
 logging.basicConfig(
@@ -29,8 +27,6 @@ BATCH_SIZE = 64
 
 reranker_model = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2", device="cpu")
 
-def sigmoid(x: float) -> float:
-    return 1.0 / (1.0 + math.exp(-x))
 
 class HybridSearchService:
     def __init__(
@@ -121,8 +117,12 @@ class HybridSearchService:
         candidate_ids = [cid for cid, _ in fused_results[:25]]
         candidate_chunks = [chunks_by_id[cid] for cid in candidate_ids]
 
-        pairs = [[self.query, chunk.text] for chunk in candidate_chunks]
-        scores = await asyncio.to_thread(reranker_model.predict, pairs) # type: ignore
+        # Rerank using story_context when available, falling back to raw text
+        pairs = [
+            [self.query, chunk.story_context or chunk.text] 
+            for chunk in candidate_chunks
+        ]
+        scores = await asyncio.to_thread(reranker_model.predict, pairs)  # type: ignore
 
         reranked = sorted(
             zip(candidate_chunks, scores),
@@ -132,7 +132,6 @@ class HybridSearchService:
 
         final_context_chunks = [chunk for chunk, _ in reranked[:self.top_k]]
 
-        # Map top-k chunks to their reranker scores
         rerank_score_map = {
             chunk.id: float(score)
             for chunk, score in reranked[:self.top_k]
@@ -146,7 +145,7 @@ class HybridSearchService:
         """
         final_context_chunks, rerank_score_map = await self._retrieve_and_rerank()
 
-        # Build citations for the top candidate chunks
+        # Build citations using raw text for verbatim snippet quote
         citations = [
             Citation(
                 citation_chunk_id=uuid.uuid5(uuid.NAMESPACE_DNS, str(c.id)),
@@ -160,15 +159,18 @@ class HybridSearchService:
             for c in final_context_chunks
         ]
 
-        # 1. Yield citations as the first SSE payload
         yield {
             "type": "citations",
             "data": citations,
         }
 
-        # 2. Format LLM prompt
-        context_blocks = [f"[{idx}] {chunk.text}" for idx, chunk in enumerate(final_context_chunks)]
-        llm_context_str = "\n".join(context_blocks)
+        # Provide both narrative summary and raw record to downstream LLM
+        context_blocks = []
+        for idx, chunk in enumerate(final_context_chunks):
+            block = f"[{idx}] Summary: {chunk.story_context or 'N/A'}\nRaw Content:\n{chunk.text}"
+            context_blocks.append(block)
+
+        llm_context_str = "\n\n".join(context_blocks)
 
         system_prompt = (
             "You are an expert medical data retrieval assistant. "
@@ -177,8 +179,7 @@ class HybridSearchService:
         )
         user_prompt = f"Query: {self.query}\n\nRecords:\n{llm_context_str}"
 
-        # 3. Stream LLM tokens directly via Ollama
-        stream = await self.client.chat( # type: ignore
+        stream = await self.client.chat(  # type: ignore
             model="llama3.2:3b",
             messages=[
                 {"role": "system", "content": system_prompt},

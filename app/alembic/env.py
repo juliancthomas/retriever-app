@@ -11,6 +11,13 @@ from app.models.base import Base
 import app.models.document  # ensures Document is registered
 import app.models.chunk     # ensures Chunk is registered
 
+import sys
+from pathlib import Path
+
+# Add project root directory to sys.path
+root_dir = Path(__file__).resolve().parents[2]  # Adjust parent index if env.py is located elsewhere
+sys.path.insert(0, str(root_dir))
+
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
