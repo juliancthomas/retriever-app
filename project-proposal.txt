@@ -1,22 +1,10 @@
 ## PostgreSQL, pgvector & Hybrid Retrieval
 
-
 * **The Stack:** Dockerized PostgreSQL with `pgvector`, FastAPI, SQLAlchemy / raw SQL.
 
-
 * **What to Build:** An end-to-end ingestion and retrieval API.
-
-
-1. Parse multi-page sample case documents (public claims, medical audit memos, or compliance policies).
-
-
-2. Implement semantic chunking: preserve document section headers, table structures, and parent metadata (e.g., page number, document ID).
-
-
-3. Store embeddings in PostgreSQL alongside text chunks.
-
-
-4. Build a hybrid query endpoint: run PostgreSQL full-text search (`tsvector` / BM25) and cosine distance vector search in parallel, merging and re-ranking the results.
-
-
-5. Return responses with direct source citations (e.g., `citation_chunk_id`, page number, and original quote text) mapped directly back to the source text.
+    1. Parse multi-page sample case documents (public claims, medical audit memos, or compliance policies).
+    2. Implement semantic chunking: preserve document section headers, table structures, and parent metadata (e.g., page number, document ID).
+    3. Store embeddings in PostgreSQL alongside text chunks.
+    4. Build a hybrid query endpoint: run PostgreSQL full-text search (`tsvector` / BM25) and cosine distance vector search in parallel, merging and re-ranking the results.
+    5. Return responses with direct source citations (e.g., `citation_chunk_id`, page number, and original quote text) mapped directly back to the source text.

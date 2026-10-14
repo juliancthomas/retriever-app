@@ -1,0 +1,366 @@
+[
+  {
+    "id": "eval-001",
+    "category": "exact_match",
+    "query": "What CPT code was billed for claim CLM-ADRIANA3-003 and what was the total charge?",
+    "expected_chunk_ids": [
+      82022
+    ],
+    "ground_truth_facts": [
+      "CPT 99213",
+      "$125.00"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-002",
+    "category": "exact_match",
+    "query": "What CPT code was billed for claim CLM-ADRIANA3-004 and what was the total charge?",
+    "expected_chunk_ids": [
+      82023
+    ],
+    "ground_truth_facts": [
+      "CPT 99213",
+      "$125.00"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-003",
+    "category": "exact_match",
+    "query": "What CPT code was billed for claim CLM-ADRIANA3-002 and what was the total charge?",
+    "expected_chunk_ids": [
+      82024
+    ],
+    "ground_truth_facts": [
+      "CPT 99213",
+      "$125.00"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-004",
+    "category": "exact_match",
+    "query": "What CPT code was billed for claim CLM-ADRIANA3-001 and what was the total charge?",
+    "expected_chunk_ids": [
+      82025
+    ],
+    "ground_truth_facts": [
+      "CPT 99213",
+      "$125.00"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-005",
+    "category": "exact_match",
+    "query": "What CPT code was billed for claim CLM-ADRIANA3-005 and what was the total charge?",
+    "expected_chunk_ids": [
+      82026
+    ],
+    "ground_truth_facts": [
+      "CPT 99213",
+      "$125.00"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-006",
+    "category": "exact_match",
+    "query": "What CPT code was billed for claim CLM-ADRIANA3-008 and what was the total charge?",
+    "expected_chunk_ids": [
+      82029
+    ],
+    "ground_truth_facts": [
+      "CPT 99213",
+      "$125.00"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-007",
+    "category": "exact_match",
+    "query": "What CPT code was billed for claim CLM-ADRIANA3-016 and what was the total charge?",
+    "expected_chunk_ids": [
+      82037
+    ],
+    "ground_truth_facts": [
+      "CPT 99213",
+      "$125.00"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-008",
+    "category": "exact_match",
+    "query": "What CPT code was billed for claim CLM-ADRIANA3-015 and what was the total charge?",
+    "expected_chunk_ids": [
+      82036
+    ],
+    "ground_truth_facts": [
+      "CPT 99213",
+      "$125.00"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-009",
+    "category": "exact_match",
+    "query": "What CPT code was billed for claim CLM-ADRIANA3-023 and what was the total charge?",
+    "expected_chunk_ids": [
+      82045
+    ],
+    "ground_truth_facts": [
+      "CPT 99213",
+      "$125.00"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-010",
+    "category": "exact_match",
+    "query": "What CPT code was billed for claim CLM-ADRIANA3-041 and what was the total charge?",
+    "expected_chunk_ids": [
+      82062
+    ],
+    "ground_truth_facts": [
+      "CPT 99213",
+      "$125.00"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-011",
+    "category": "diagnosis_lookup",
+    "query": "What specific diagnosis finding was recorded for patient claim CLM-ADRIANA3-003 on 2014-02-05?",
+    "expected_chunk_ids": [
+      82022
+    ],
+    "ground_truth_facts": [
+      "Chronic pain (finding)"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-012",
+    "category": "diagnosis_lookup",
+    "query": "What specific diagnosis finding was recorded for patient claim CLM-ADRIANA3-004 on 2014-04-06?",
+    "expected_chunk_ids": [
+      82023
+    ],
+    "ground_truth_facts": [
+      "Past pregnancy history of miscarriage (situation)"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-013",
+    "category": "diagnosis_lookup",
+    "query": "What specific diagnosis finding was recorded for patient claim CLM-ADRIANA3-002 on 2009-09-14?",
+    "expected_chunk_ids": [
+      82024
+    ],
+    "ground_truth_facts": [
+      "Educated to high school level (finding)"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-014",
+    "category": "diagnosis_lookup",
+    "query": "What specific diagnosis finding was recorded for patient claim CLM-ADRIANA3-001 on 2008-09-08?",
+    "expected_chunk_ids": [
+      82025
+    ],
+    "ground_truth_facts": [
+      "Risk activity involvement (finding)"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-015",
+    "category": "diagnosis_lookup",
+    "query": "What specific diagnosis finding was recorded for patient claim CLM-ADRIANA3-005 on 2016-10-10?",
+    "expected_chunk_ids": [
+      82026
+    ],
+    "ground_truth_facts": [
+      "Not in labor force (finding)"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-016",
+    "category": "diagnosis_lookup",
+    "query": "What specific diagnosis finding was recorded for patient claim CLM-ADRIANA3-007 on 2017-10-16?",
+    "expected_chunk_ids": [
+      82028
+    ],
+    "ground_truth_facts": [
+      "Medication review due (situation)"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-017",
+    "category": "diagnosis_lookup",
+    "query": "What specific diagnosis finding was recorded for patient claim CLM-ADRIANA3-009 on 2018-10-22?",
+    "expected_chunk_ids": [
+      82030
+    ],
+    "ground_truth_facts": [
+      "Medication review due (situation)"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-018",
+    "category": "diagnosis_lookup",
+    "query": "What specific diagnosis finding was recorded for patient claim CLM-ADRIANA3-010 on 2018-11-05?",
+    "expected_chunk_ids": [
+      82032
+    ],
+    "ground_truth_facts": [
+      "Gingival disease (disorder)"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-019",
+    "category": "diagnosis_lookup",
+    "query": "What specific diagnosis finding was recorded for patient claim CLM-ADRIANA3-013 on 2020-11-02?",
+    "expected_chunk_ids": [
+      82034
+    ],
+    "ground_truth_facts": [
+      "Medication review due (situation)"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-020",
+    "category": "diagnosis_lookup",
+    "query": "What specific diagnosis finding was recorded for patient claim CLM-ADRIANA3-022 on 2022-11-14?",
+    "expected_chunk_ids": [
+      82046
+    ],
+    "ground_truth_facts": [
+      "Medication review due (situation)"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-021",
+    "category": "diagnosis_lookup",
+    "query": "What specific diagnosis finding was recorded for patient claim CLM-ADRIANA3-008 on 2017-12-05?",
+    "expected_chunk_ids": [
+      82029
+    ],
+    "ground_truth_facts": [
+      "Viral sinusitis (disorder)"
+    ],
+    "negative_control": false
+  },
+  {
+    "id": "eval-022",
+    "category": "adversarial",
+    "query": "Confirm that claim CLM-ADRIANA3-041 was billed under CPT code 99215 for $500.00.",
+    "expected_chunk_ids": [
+      82062
+    ],
+    "ground_truth_facts": [
+      "Actual CPT is 99213",
+      "Actual charge is $125.00"
+    ],
+    "negative_control": true
+  },
+  {
+    "id": "eval-023",
+    "category": "adversarial",
+    "query": "Confirm that claim CLM-ADRIANA3-023 was billed under CPT code 99215 for $500.00.",
+    "expected_chunk_ids": [
+      82045
+    ],
+    "ground_truth_facts": [
+      "Actual CPT is 99213",
+      "Actual charge is $125.00"
+    ],
+    "negative_control": true
+  },
+  {
+    "id": "eval-024",
+    "category": "adversarial",
+    "query": "Confirm that claim CLM-ADRIANA3-015 was billed under CPT code 99215 for $500.00.",
+    "expected_chunk_ids": [
+      82036
+    ],
+    "ground_truth_facts": [
+      "Actual CPT is 99213",
+      "Actual charge is $125.00"
+    ],
+    "negative_control": true
+  },
+  {
+    "id": "eval-025",
+    "category": "adversarial",
+    "query": "Confirm that claim CLM-ADRIANA3-016 was billed under CPT code 99215 for $500.00.",
+    "expected_chunk_ids": [
+      82037
+    ],
+    "ground_truth_facts": [
+      "Actual CPT is 99213",
+      "Actual charge is $125.00"
+    ],
+    "negative_control": true
+  },
+  {
+    "id": "eval-026",
+    "category": "unanswerable",
+    "query": "Retrieve total charges and service dates for missing claim record CLM-TEST-404.",
+    "expected_chunk_ids": [],
+    "ground_truth_facts": [
+      "No records found"
+    ],
+    "negative_control": true
+  },
+  {
+    "id": "eval-027",
+    "category": "unanswerable",
+    "query": "Retrieve total charges and service dates for missing claim record CLM-NONEXISTENT-000.",
+    "expected_chunk_ids": [],
+    "ground_truth_facts": [
+      "No records found"
+    ],
+    "negative_control": true
+  },
+  {
+    "id": "eval-028",
+    "category": "unanswerable",
+    "query": "Retrieve total charges and service dates for missing claim record CLM-UNKNOWN-999.",
+    "expected_chunk_ids": [],
+    "ground_truth_facts": [
+      "No records found"
+    ],
+    "negative_control": true
+  },
+  {
+    "id": "eval-029",
+    "category": "unanswerable",
+    "query": "Retrieve total charges and service dates for missing claim record CLM-TEST-404.",
+    "expected_chunk_ids": [],
+    "ground_truth_facts": [
+      "No records found"
+    ],
+    "negative_control": true
+  },
+  {
+    "id": "eval-030",
+    "category": "unanswerable",
+    "query": "Retrieve total charges and service dates for missing claim record CLM-TEST-404.",
+    "expected_chunk_ids": [],
+    "ground_truth_facts": [
+      "No records found"
+    ],
+    "negative_control": true
+  }
+]
